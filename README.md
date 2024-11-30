@@ -1,0 +1,1 @@
+AI News Video Generator is a web application that converts text scripts into digital video news formats, allowing users to create professional-quality news videos that can reach a wide audience. This tool leverages advanced AI techniques to streamline the video creation process.
