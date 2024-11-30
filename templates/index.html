@@ -1,0 +1,213 @@
+{% include 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Video</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            margin: 0;
+            padding: 0;
+            display: block;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-y: hidden;
+        }
+        h1{
+            display: flex;   
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            margin-top: 5%;
+            margin-left: 6%;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 1400px;
+        }
+        textarea {
+            width: 100%;
+            height: 320px;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            resize: none;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+        .output {
+            width: 50%;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .progress {
+            width: 100%;
+            height: 20px;
+            background-color: #f3f3f3;
+            border: 1px solid #ccc;
+            display: none;
+            border-radius: 5px;
+            overflow: hidden;
+            margin-top: 20px;
+        }
+        .progress-bar {
+            width: 0;
+            height: 100%;
+            background-color: #4caf50;
+        }
+        #videoPlayer {
+            width: 100%;
+            height: 100%;
+            border-radius: 8px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .inpu{
+            width: 45%;
+        }
+    </style>
+</head>
+<body>  
+   
+    <div class="container">
+        <div class="inpu">
+            <h1>Input Text</h1>
+            <textarea id="textInput" placeholder="Enter text here..."></textarea>
+            <div id="kannadaText" style="display: none;">
+                <label for="scrollText">ASCII Text (Kannada):</label>
+                <textarea id="scrollText" name="scrollText" rows="2" cols="50"></textarea><br><br>
+            </div>
+            <select id="languageSelect">
+                <option value="english">English</option>
+                <option value="kannada">Kannada</option>
+                <option value="telugu">Telugu</option>
+                <option value="hindi">Hindi</option>
+                <option value="tamil">Tamil</option>
+                <option value="bengali">Bengali</option>
+                <option value="marathi">Marathi</option>
+            </select>
+            <input type="file" id="imageUpload" accept="image/*">
+            <button onclick="processText()">Generate Video</button>
+            <div class="progress">
+                <div class="progress-bar"></div>
+            </div>
+        </div>
+        <div class="output">
+            <!-- <div class="video-output" id="videoOutput"> -->
+                <h1>Output Video</h1>
+                <video id="videoPlayer" controls>
+                    <source id="videoSource" src="" type="video/mp4">
+                </video>
+            <!-- </div> -->
+        </div>
+    </div>
+
+    <script>
+         function processText() {
+            const text = document.getElementById('textInput').value;
+            const kantext = document.getElementById('scrollText').value;
+            const language = document.getElementById('languageSelect').value;
+            const imageFile = document.getElementById('imageUpload').files[0];
+            const progressBar = document.querySelector('.progress');
+            const progressBarInner = document.querySelector('.progress-bar');
+            const videoPlayer = document.getElementById('videoPlayer');
+            const videoSource = document.getElementById('videoSource');
+
+            if (!progressBar || !progressBarInner) {
+                console.error('Progress bar elements not found.');
+                return;
+            }
+
+            progressBar.style.display = 'block';
+            progressBarInner.style.width = '0%';
+
+            const interval = setInterval(() => {
+                const width = parseInt(progressBarInner.style.width);
+                if (width >= 100) {
+                    clearInterval(interval);
+                } else {
+                    progressBarInner.style.width = (width + 1) + '%';
+                }
+            }, 50);
+
+            const formData = new FormData();
+            formData.append('text', text);
+            formData.append('language', language);
+            formData.append('scrollText',kantext)
+            if (imageFile) {
+                formData.append('image', imageFile);
+            }
+
+            fetch('/process_text', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok: ' + response.statusText);
+                }
+                return response.json();
+            })
+            .then(data => {
+                clearInterval(interval);
+                progressBar.style.display = 'none';
+                if (data.video_url) {
+                    videoPlayer.style.display = 'block';
+                    videoSource.src = '/' + data.video_url;
+                    videoPlayer.load();
+                    videoPlayer.play();
+                } else {
+                    alert('Failed to generate video.');
+                }
+            })
+            .catch(error => {
+                clearInterval(interval);
+                progressBar.style.display = 'none';
+                alert('An error occurred while processing the text: ' + error.message);
+                console.error('Error:', error);
+            });
+        }
+        $(document).ready(function() {
+        $('#languageSelect').change(function() {
+            var selectedLanguage = $(this).val();
+            if (selectedLanguage === 'kannada') {
+                $('#kannadaText').show();
+                $('#textInput').css('height', '150px');
+                $('#scrollText').css('height', '150px');
+            } else {
+                $('#kannadaText').hide();
+                $('#textInput').css('height', '');
+                $('#scrollText').css('height', '150px');
+            }
+        });
+    });
+    </script>
+</body>
+</html>

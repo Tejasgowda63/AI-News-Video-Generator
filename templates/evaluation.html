@@ -1,0 +1,90 @@
+{% include 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text to Audio Results</title>
+    <style>
+        .ev {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        .input-text {
+            margin-bottom: 20px;
+        }
+
+        .output-audio {
+            margin-top: 40px;
+        }
+
+        .output-audio h2 {
+            margin-bottom: 10px;
+        }
+
+        .output-details {
+            margin-top: 20px;
+        }
+
+        .output-details p {
+            margin-bottom: 5px;
+        }
+
+        .figure {
+            margin-top: 40px;
+        }
+
+        .figure img {
+            display: block;
+            margin: auto;
+            max-width: 100%;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="ev">
+    <div class="container">
+        <h1>Text to Audio Conversion Results</h1>
+
+        <div class="input-text">
+            <h2>Input Text:</h2>
+            <p>
+                In India, nearly three-quarters of business leaders reported that visual communication tools have boosted business performance, aiding in content creation, team collaboration, and audience engagement. This increase in effectiveness has led 70% of Indian business leaders to invest more in visual communication tools than in the previous year.
+            </p>
+        </div>
+
+        <div class="figure">
+            <h2>Output Audio:</h2>
+            <img src="static\images\download.png" alt="Frequency Spectrum">
+            <p>Fig. 1. Output Audio in WAV Format.</p>
+            <p>WER (Word Error Rate): 0.254325345</p>
+        </div>
+
+        <div class="figure">
+            <h2>Frequency Spectrum of Audio File:</h2>
+            <img src="static\images\image.png" alt="Frequency Spectrum">
+            <p>Fig. 2. Frequency Spectrum of Audio File.</p>
+        </div>
+    </div>
+</div>
+</body>
+</html>

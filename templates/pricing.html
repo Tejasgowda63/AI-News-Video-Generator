@@ -1,0 +1,139 @@
+{% include 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing Plans</title>
+    <style>
+        body{
+            overflow-y: hidden;
+            overflow-x : hidden;
+        }
+        .pr {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .pricing-table {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .pricing-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            width: 300px;
+            text-align: center;
+            transition: transform 0.2s;
+            position: relative; /* Ensure relative positioning for absolute child */
+        }
+
+        .pricing-card:hover {
+            transform: scale(1.05);
+        }
+
+        .pricing-card h2 {
+            margin-top: 0;
+        }
+
+        .price {
+            font-size: 24px;
+            color: #333;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .bs li, .pp li, .ep li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        ul li:last-child {
+            border-bottom: none;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .pricing-card img {
+            width: 100%;
+            height: auto;
+            margin-bottom: 10px;
+            border-radius: 10px 10px 0 0; 
+        }
+    </style>
+</head>
+<body>
+    <div class="pr">
+        <header>
+            <h1>AI-Powered News Video Generator Pricing Plans</h1>
+        </header>
+        <section class="pricing-table">
+            <div class="pricing-card">
+                <h2>Basic Plan</h2>
+                <img src="static/images/demo1.png" alt="Basic Plan Image">
+                <p class="price">Rs : 1000/month</p>
+                <ul class="bs">
+                    <li>Up to 10 videos per month</li>
+                    <li>English language support</li>
+                    <li>Standard video quality</li>
+                </ul>
+                <button>Buy Now</button>
+            </div>
+            <div class="pricing-card">
+                <h2>Pro Plan</h2>
+                <img src="static/images/demo.png" alt="Pro Plan Image">              
+                <p class="price">Rs : 3000/month</p>
+                <ul class="pp">
+                    <li>Up to 50 videos per month</li>
+                    <li>Multilingual support</li>
+                    <li>High video quality</li>
+                </ul>
+                <button>Buy Now</button>
+            </div>
+            <div class="pricing-card">
+                <h2>Enterprise Plan</h2>
+                <img src="static/images/demo2.png" alt="Enterprise Plan Image">
+                <p class="price">Rs : 10000/month</p>
+                <ul class="ep">
+                    <li>Unlimited videos</li>
+                    <li>Multilingual support</li>
+                    <li>Premium video quality</li>
+                    <li>24/7 support</li>
+                </ul>
+                <button>Contact Us</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>

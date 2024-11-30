@@ -1,0 +1,177 @@
+{% include 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio</title>
+    <style>
+        body {
+            margin: 0;
+            overflow-y: hidden;
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #ffffff;
+        }
+
+        header {
+            background-color: #000;
+            padding: 20px 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: calc(100vh - 60px);
+        }
+
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .hero-content img {
+            border-radius: 10px;
+            width: 700px;
+            height: auto;
+            margin-right: 50px;
+            display: none;
+        }
+
+        .hero-text {
+            max-width: 500px;
+        }
+
+        .availability {
+            background-color: #00ff00;
+            color: #000;
+            padding: 5px 10px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 50px;
+        }
+
+        p {
+            font-size: 18px;
+        }
+
+        .contact-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff6600;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .dots {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .dot {
+            height: 15px;
+            width: 15px;
+            margin: 0 0px;
+            background-color: #bbb;
+            border-radius: 50%;
+            display: inline-block;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .active {
+            background-color: #717171;
+        }
+        .imgslide{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="imgslide">
+                <img src="static/images/demo1.png" alt="Image 1" class="slide">
+                <img src="static/images/demo.png" alt="Image 2" class="slide">
+                <img src="static/images/demo2.png" alt="Image 3" class="slide">
+                <img src="static/images/demo3.png" alt="Image 4" class="slide">
+                <img src="static/images/demo4.png" alt="Image 5" class="slide">
+                <div class="dots">
+                    <span class="dot" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                    <span class="dot" onclick="currentSlide(4)"></span>
+                    <span class="dot" onclick="currentSlide(5)"></span>
+                </div>
+            </div>
+                <div class="hero-text">
+                    <span class="availability">Available to use!</span>
+                    <h2>AI News Video Generator</h2>
+                    <p>Make your text script as digital video format which reaches the wide range of audience.</p>
+                    <a href="/home" class="contact-btn">Try Now</a>
+                </div>
+            </div>  
+        </div>
+    </section>
+
+    <script>
+        let slideIndex = 0;
+        const slides = document.getElementsByClassName("slide");
+        const dots = document.getElementsByClassName("dot");
+
+        function showSlides() {
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";  
+            }
+            slideIndex++;
+            if (slideIndex > slides.length) {slideIndex = 1}    
+            slides[slideIndex-1].style.display = "block";  
+            for (let i = 0; i < dots.length; i++) {
+                dots[i].className = dots[i].className.replace(" active", "");
+            }
+            dots[slideIndex-1].className += " active";
+            setTimeout(showSlides, 10000); // Change image every 10 seconds
+        }
+
+        function currentSlide(n) {
+            clearTimeout(slideshowTimeout);
+            slideIndex = n - 1;
+            showSlides();
+        }
+
+        let slideshowTimeout = setTimeout(showSlides, 10000);
+        showSlides();
+    </script>
+</body>
+</html>
