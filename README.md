@@ -1,3 +1,4 @@
+AI News Video Generator
 
 ![Landing Page](https://github.com/user-attachments/assets/b53fda19-fc06-4ee7-9308-bbfc8f96019b)
 
