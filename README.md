@@ -18,10 +18,11 @@ AI News Video Generator is a web application that converts text scripts into dig
 
 ![Landing Page](https://github.com/user-attachments/assets/b53fda19-fc06-4ee7-9308-bbfc8f96019b)
 
+
 ![Home Page](https://github.com/user-attachments/assets/81df4fe9-e100-4b6d-bef8-135f08591161)
 
 
-Generated Demo Video
+Generated Demo Videos
 
 1) Kannada
 https://github.com/user-attachments/assets/c654a089-1a6f-4e49-9ca0-c3abcb082e22
