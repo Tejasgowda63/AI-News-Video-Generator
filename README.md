@@ -8,6 +8,9 @@ AI News Video Generator is a web application that converts text scripts into dig
 4) Responsive Design : Fully responsive web interface that works seamlessly on all devices.
 5) Real-Time Video Output : Preview generated videos directly within the application.
 
+
+![Landing Page](https://github.com/user-attachments/assets/b53fda19-fc06-4ee7-9308-bbfc8f96019b)
+
 -> Usage
 
 1) Input Text : Enter your news script in the provided text area.
@@ -15,10 +18,7 @@ AI News Video Generator is a web application that converts text scripts into dig
 3) Upload Media (Optional) : Add images or video clips to enhance the output.
 4) Generate Video : Click the "Generate Video" button to create your news video.
 5) Preview and Download : View the video in the output section and download it if satisfied.
-
-![Landing Page](https://github.com/user-attachments/assets/b53fda19-fc06-4ee7-9308-bbfc8f96019b)
-
-
+   
 ![Home Page](https://github.com/user-attachments/assets/81df4fe9-e100-4b6d-bef8-135f08591161)
 
 
